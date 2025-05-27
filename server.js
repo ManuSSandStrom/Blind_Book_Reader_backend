@@ -15,6 +15,11 @@ app.use(cors());
 app.use(express.json());
 app.use('/pdf', express.static(path.join(__dirname, 'uploads')));
 
+// Optional: Root Route (to remove "Cannot GET /")
+app.get('/', (req, res) => {
+  res.send('✅ Blind Book Reader Backend is running!');
+});
+
 // File Upload Setup
 const storage = multer.diskStorage({
   destination: 'uploads/',
@@ -70,5 +75,5 @@ app.post('/explain', async (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
