@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Gemini AI Setup
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(AIzaSyD9BEYm1fob0GoK5LG535jlTSaYQniWW9o);
 
 // Upload Book
 app.post('/upload', upload.single('file'), (req, res) => {
