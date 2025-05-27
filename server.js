@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/pdf', express.static(path.join(__dirname, 'uploads')));
 
-// Optional: Root Route (to remove "Cannot GET /")
+// ✅ Root Route (fixes "Cannot GET /")
 app.get('/', (req, res) => {
   res.send('✅ Blind Book Reader Backend is running!');
 });
@@ -29,8 +29,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Gemini AI Setup
-const genAI = new GoogleGenerativeAI(AIzaSyD9BEYm1fob0GoK5LG535jlTSaYQniWW9o);
+// ✅ Gemini AI Setup using .env
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Upload Book
 app.post('/upload', upload.single('file'), (req, res) => {
